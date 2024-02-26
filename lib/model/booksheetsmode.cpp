@@ -1,15 +1,14 @@
-#include "sheetmodel.h"
+#include "booksheetsmodel.h"
 #include "./../excel/excelhelper.h"
 #include "./../logger.h"
 
 #include <QQmlContext>
 
-
-BookSheetModel::BookSheetModel(QObject *parent)
+BookSheetsModel::BookSheetsModel(QObject *parent)
     : QAbstractListModel(parent)
 {}
 
-void BookSheetModel::updateFromFile(QString docPath) {
+void BookSheetsModel::updateFromFile(QString docPath) {
     beginResetModel();
     ExcelHelper eh(docPath);
     m_sheetNames = eh.getBookSheetNames();
@@ -17,16 +16,16 @@ void BookSheetModel::updateFromFile(QString docPath) {
     endResetModel();
 }
 
-QString BookSheetModel::getListNames() {
+QString BookSheetsModel::getListNames() {
     return m_sheetNames.join(" ");
 }
 
-int BookSheetModel::rowCount(const QModelIndex &parent) const
+int BookSheetsModel::rowCount(const QModelIndex &parent) const
 {
     return m_sheetNames.length();
 }
 
-QVariant BookSheetModel::data(const QModelIndex &index, int role) const
+QVariant BookSheetsModel::data(const QModelIndex &index, int role) const
 {
     if(!checkIndex(index))
         return QVariant();
@@ -37,7 +36,7 @@ QVariant BookSheetModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QHash<int, QByteArray> BookSheetModel::roleNames() const
+QHash<int, QByteArray> BookSheetsModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[TextRole] = "text";

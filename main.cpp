@@ -3,7 +3,8 @@
 
 #include "lib/logger.h"
 #include "lib/appcore.h"
-#include "lib/model/sheetmodel.h"
+#include "lib/model/booksheetsmodel.h"
+#include "lib/model/sheetcolumnsmodel.h"
 
 // Все, что делает эта демонстрационная программа - это выводит на экран содержимое первой ячейки Excel-файла
 
@@ -23,7 +24,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QGuiApplication app(argc, argv); // Объект Qt-приложения с графическим интерфейсом
 
-    // Logger
+           // Logger
     Logger::setFile(u"ExcelParser.log"_s);
     Logger::clearLogFile();
     Logger::disableFilePrint();
@@ -32,8 +33,10 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    BookSheetModel sheetModel;
-    engine.rootContext()->setContextProperty("sheetModel", &sheetModel);
+    SheetColumnsModel columnsModel;
+    engine.rootContext()->setContextProperty("columnsModel", &columnsModel);
+    BookSheetsModel sheetsModel;
+    engine.rootContext()->setContextProperty("sheetsModel", &sheetsModel);
     Appcore appcore;
     engine.rootContext()->setContextProperty("appcore", &appcore);
 

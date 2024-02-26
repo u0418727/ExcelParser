@@ -3,15 +3,12 @@
 
 #include <QAbstractListModel>
 
-class BookSheetModel : public QAbstractListModel
+class BookSheetsModel : public QAbstractListModel
 {
     Q_OBJECT
 
-signals:
-    void modelChanged();
-
 public:
-    explicit BookSheetModel(QObject *parent = nullptr);
+    explicit BookSheetsModel(QObject *parent = nullptr);
 
     enum SheetRoles {
         TextRole = Qt::UserRole + 1
@@ -29,4 +26,4 @@ private:
     QStringList m_sheetNames;
 };
 
-#endif // BOOKSHEETSMODEL_H
+#endif // !BOOKSHEETSMODEL_H

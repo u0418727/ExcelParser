@@ -92,16 +92,11 @@ ComboBox {
     background: Rectangle {
         id: rootBG
         implicitWidth: 140
-        implicitHeight: 40
+        implicitHeight: 48
         color: root.down ? root.activeColor : root.inActiveColor
-        radius: 5
+        radius: 12
 
         layer.enabled: root.hovered | root.down
-        layer.effect: DropShadow {
-            transparentBorder: true
-            color: root.activeColor
-            samples: 10
-        }
     }
 
     popup: Popup {
@@ -121,15 +116,8 @@ ComboBox {
 
         background: Rectangle {
             color: root.inActiveColor
-            radius: 5
+            radius: 12
             clip: true
-
-            layer.enabled: root.hovered | root.down
-            layer.effect: DropShadow {
-                transparentBorder: true
-                color: root.inActiveColor
-                samples: 10
-            }
         }
 
         onVisibleChanged: visible ? indicatorIcon.rotation = 180 : indicatorIcon.rotation = 0

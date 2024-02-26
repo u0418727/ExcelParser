@@ -15,8 +15,8 @@ Appcore::Appcore(QObject *parent)
     return "";
 }
 
-QString Appcore::getColumnNames(const QString& docPath, const QString& sheetName)
+QStringList Appcore::getColumnNames(const QString& docPath, const QString& sheetName)
 {
     ExcelHelper eh(docPath, sheetName);
-    return eh.getSheetColumnNames().join(" | ");
+    return eh.getSheetColumnNames();
 }

@@ -6,7 +6,9 @@ import Themes 0.1
 
 Item {
     id: root
+
     width: 20
+    height: 48
 
     signal browseClicked
 
@@ -21,7 +23,7 @@ Item {
         width: root.width
         border.width: 1
         border.color: root.enabled ? ColorThemes.main_color : "#E1E1E1"
-        radius: 5
+        radius: 12
         antialiasing: true
         anchors.left: parent.left
         anchors.top: parent.top
@@ -38,16 +40,16 @@ Item {
 
             Rectangle
             {
-                radius: 5
+                radius: 12
                 anchors.fill: parent
-                color: root.color
+                color: mouseArea.containsMouse ? ColorThemes.main_color_hover : ColorThemes.main_color
 
                 Rectangle
                 {
                     anchors.left: parent.left
                     height: parent.height
-                    width: 5
-                    color: parent.color
+                    width: 10
+                    color: mouseArea.containsMouse ? ColorThemes.main_color_hover : ColorThemes.main_color
                 }
 
                 Text
@@ -64,6 +66,7 @@ Item {
             MouseArea
             {
                 id: mouseArea
+                hoverEnabled: true
                 anchors.fill: parent
                 onClicked: root.browseClicked()
                 cursorShape: Qt.PointingHandCursor
